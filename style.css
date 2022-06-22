@@ -1,0 +1,22 @@
+#container{
+    border: 1px solid gray;
+    width: max-content;
+    height: max-content;
+    padding: 0;
+}
+
+.gridRow{
+    display: flex;
+}
+
+.cell {
+  /* border: 1px solid gray; */
+  min-width: 20px;
+  min-height: 20px;
+  display: flex;
+  background-color: darkblue;
+}
+
+.hover {
+    background-color: blueviolet;
+}
