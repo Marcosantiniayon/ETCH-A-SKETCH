@@ -2,9 +2,22 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: rgb(39, 28, 40);
+    min-height: 100vh;
+    width: 100%;
+    margin: 0;
 }
 
-.pixel{
+h1{
+    color: rgb(39, 28, 40);
+    font-family: 'Monoton', cursive;
+    font-size: 3em;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: rgb(223, 81, 228);
+    margin: 16px;
+}
+
+.scale{
     align-self: center;
     margin: 16px;
     /* color: aqua; */
@@ -20,7 +33,16 @@ body{
     height: 600px;
     padding: 0;
     margin: 0;
-    border: 1px solid gray;
+    border: 1px solid rgb(64, 64, 160);
+}
+
+#footer{
+    justify-self:flex-end;
+    text-align: center;
+    color: rgb(223, 81, 228, .5);
+    /* background-color: rgba(255, 255, 255, 0.26); */
+    width: 100%;
+    margin-top: auto;
 }
 
 .gridRow{
@@ -32,9 +54,10 @@ body{
     display: flex;
     flex: 1 1 0;
     background-color: darkblue;
-    border: 1px solid gray;
+    /* border: 1px solid rgb(64, 64, 160); */
 }
 
 .hover {
     background-color: rgb(189, 43, 226);;
 }
+

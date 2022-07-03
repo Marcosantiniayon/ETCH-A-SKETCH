@@ -2,14 +2,15 @@
 
 const container = document.getElementById("container");
 let rows = document.getElementsByClassName("gridRow");
-let cells = document.getElementsByClassName("cell");
-let pixelButton = document.getElementsByClassName("pixel");
+let cells = document.querySelectorAll('.cell');
+let scaleBtn = document.querySelector(".scale");
+let squares = 16;
 
 // Creates a default grid sized 16x16
-function defaultGrid() {
-    makeRows(20);
-    makeColumns(20);
-    hoverColor();
+function newGrid(squares) {
+    makeRows(squares);
+    makeColumns(squares);
+    //hoverColor();
 }
 
 // Takes (rows, columns) input and makes a grid
@@ -22,6 +23,10 @@ function makeRows(rowNum) {
     };
 };
 
+let mouseDown = false
+document.body.onmousedown = () => (mouseDown = true)
+document.body.onmouseup = () => (mouseDown = false)
+
 // Creates columns
 function makeColumns(cellNum) {
     cellNumb = cellNum-1;
@@ -29,22 +34,56 @@ function makeColumns(cellNum) {
     for (i = 0; i <= rowsLength; i++) {
         for (j = 0; j <= cellNumb; j++) {
             let newCell = document.createElement("div");
+            newCell.addEventListener('mouseover', paint);
+            newCell.addEventListener('mousedown', paint);
             rows[j].appendChild(newCell).className = "cell";
         };
-
     };
 };
 
-//function that changes div color uponed being hovered
-function hoverColor() {
-    let cells = document.querySelectorAll('.cell');
-    cells.forEach(cell => {
-      cell.addEventListener("mouseover", () => {
-        cell.classList.add("hover");
-      });
-    });
-  }
+function paint(event){
+    
+    if (event.type === 'mouseover' && mouseDown === true) 
+    {
+        console.log("NO, mousedown: " + mouseDown);
+        event.target.classList.add("hover");
+    } 
+    else {
+        console.log("YES, mousedown: " + mouseDown);
+    }
+};
 
-//function that prompts user to change # of pixels which changes the # of grids  
+// WORKING function that changes div color uponed being hovered
+// function hoverColor() {
+//     let cells = document.querySelectorAll('.cell');
+//     cells.forEach(cell => {
+//       cell.addEventListener("mouseover", () => {
+//         cell.classList.add("hover");
+//       });
+//     });
+//   }
 
-defaultGrid();
+
+
+//function that prompts user to change scale which changes the # of grids  
+function scaleChange(event){
+    squares = prompt("Please enter the number of squares per side (100 max):", "16")
+    if(squares <= 100){
+        resetGrid();
+        newGrid(squares); 
+    } else{
+        alert("Please make sure number is no more than 100");
+        return;
+    };
+
+}
+
+function resetGrid(){
+    while(container.firstChild){
+        container.removeChild(container.firstChild);
+    }
+}
+
+scaleBtn.addEventListener('click', scaleChange); 
+newGrid(squares); //calls the function to create a default grid
+
