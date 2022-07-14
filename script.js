@@ -4,6 +4,12 @@ const container = document.getElementById("container");
 let rows = document.getElementsByClassName("gridRow");
 let cells = document.querySelectorAll('.cell');
 let scaleBtn = document.querySelector(".scale");
+let colorBtn = document.querySelector(".colorBtn");
+let rainbowBtn = document.querySelector(".rainbowBtn");
+let eraserBtn = document.querySelector(".eraserBtn");
+let clearBtn = document.querySelector(".clearBtn");
+let colorChoice =  document.getElementById("colorPicker").value;
+
 let squares = 16;
 
 // Creates a default grid sized 16x16
@@ -42,41 +48,27 @@ function makeColumns(cellNum) {
 };
 
 function paint(event){
-    
+    let target = event.target
     if (event.type === 'mouseover' && mouseDown === true) 
     {
-        console.log("NO, mousedown: " + mouseDown);
-        event.target.classList.add("hover");
+        if(colorBtn.classList.contains("active")){
+            target.style.backgroundColor = colorChoice;
+        }else if( rainbowBtn.classList.contains("active")){
+            target.classList.add("hoverRainbow");
+            let randomR = Math.floor(Math.random() * 256);
+            let randomG = Math.floor(Math.random() * 256);
+            let randomB = Math.floor(Math.random() * 256);
+            target.style.backgroundColor = `rgb(${randomR}, ${randomG}, ${randomB})`
+        }else if( eraserBtn.classList.contains("active")){
+            target.style.backgroundColor = `darkblue`
+        }else {
+            target.style.backgroundColor = `rgb(189, 43, 226)`
+        }
     } 
     else {
-        console.log("YES, mousedown: " + mouseDown);
     }
 };
 
-// WORKING function that changes div color uponed being hovered
-// function hoverColor() {
-//     let cells = document.querySelectorAll('.cell');
-//     cells.forEach(cell => {
-//       cell.addEventListener("mouseover", () => {
-//         cell.classList.add("hover");
-//       });
-//     });
-//   }
-
-
-
-//function that prompts user to change scale which changes the # of grids  
-function scaleChange(event){
-    squares = prompt("Please enter the number of squares per side (100 max):", "16")
-    if(squares <= 100){
-        resetGrid();
-        newGrid(squares); 
-    } else{
-        alert("Please make sure number is no more than 100");
-        return;
-    };
-
-}
 
 function resetGrid(){
     while(container.firstChild){
@@ -84,6 +76,67 @@ function resetGrid(){
     }
 }
 
-scaleBtn.addEventListener('click', scaleChange); 
-newGrid(squares); //calls the function to create a default grid
+document.querySelector("#colorPicker").onchange = e => {
+    console.log(e.target.value)
+    colorChoice = e.target.value;
+    console.log(colorChoice);
+ }
 
+//function that prompts user to change scale which changes the # of grids  
+function scaleChange(event){
+    squares = prompt("Please enter the number of squares per side (100 max):", "16")
+    if (squares === null){
+        console.log(squares);
+        return;
+    } else if(squares <= 100){
+        resetGrid();
+        console.log(squares);
+        newGrid(squares); 
+    }else{
+        alert("Please make sure number is no more than 100");
+        console.log(squares);
+        return;
+    };
+
+}
+
+function removeActive(){
+    if(colorBtn.classList.contains("active")){
+        colorBtn.classList.remove("active")
+    }else if(rainbowBtn.classList.contains("active")){
+        rainbowBtn.classList.remove("active")
+    }else if(eraserBtn.classList.contains("active")){
+        eraserBtn.classList.remove("active")
+    }else {
+    }
+}
+
+scaleBtn.addEventListener('click', () => {
+    scaleChange();
+}); 
+
+colorBtn.addEventListener('click', () => {
+        removeActive();
+        colorBtn.classList.add("active");
+}); 
+
+rainbowBtn.addEventListener('click', () => {
+    removeActive();
+    rainbowBtn.classList.add("active");
+}); 
+
+eraserBtn.addEventListener('click', () => {
+    removeActive();
+    eraserBtn.classList.add("active");
+}); 
+
+clearBtn.addEventListener('click', () => {
+    resetGrid();
+    if(squares === null){
+        newGrid(16);
+    }else {
+        newGrid(squares);
+    }
+}); 
+
+newGrid(squares); //calls the function to create a default grid

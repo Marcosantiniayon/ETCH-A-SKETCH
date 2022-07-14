@@ -8,6 +8,21 @@ body{
     margin: 0;
 }
 
+#page{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70vw;
+    margin: 0;
+}
+
+#main{
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding-left: 150px;
+}
+
 h1{
     color: rgb(39, 28, 40);
     font-family: 'Monoton', cursive;
@@ -15,15 +30,6 @@ h1{
     -webkit-text-stroke-width: 2px;
     -webkit-text-stroke-color: rgb(223, 81, 228);
     margin: 16px;
-}
-
-.scale{
-    align-self: center;
-    margin: 16px;
-    /* color: aqua; */
-    background-color: rgb(223, 81, 228);
-    color: white;
-    font-weight: 900;
 }
 
 #container{
@@ -35,6 +41,75 @@ h1{
     margin: 0;
     border: 1px solid rgb(64, 64, 160);
 }
+
+.settings{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    justify-content: center;
+}
+
+.scale{
+    align-self: center;
+    margin: 16px;
+    background-color: rgb(215, 122, 217);
+    color: white;
+    font-weight: 900;
+    padding:8px;
+    width: 100px;
+    border: 1px;
+    border-radius: 12px;
+}
+
+.colorBtn{
+    align-self: center;
+    margin: 16px;
+    background-color: rgb(148,0,211);
+    color: white;
+    font-weight: 900;
+    padding:8px;
+    width: 100px;
+    border: 1px;
+    border-radius: 12px;
+}
+
+.rainbowBtn{
+    align-self: center;
+    margin: 16px;
+    background-color: rgb(147,112,219);
+    color: white;
+    font-weight: 900;    
+    padding:8px;
+    width: 100px;
+    border: 1px;
+    border-radius: 12px;
+}
+
+.eraserBtn{
+    align-self: center;
+    margin: 16px;
+    background-color: rgb(106,90,205);
+    color: white;
+    font-weight: 900; 
+    padding:8px;
+    width: 100px;
+    border: 1px;
+    border-radius: 12px;
+}
+
+.clearBtn{
+    align-self: center;
+    margin: 16px;
+    background-color: rgb(106,90,205);
+    color: white;
+    font-weight: 900; 
+    padding:8px;
+    width: 100px;
+    border: 1px;
+    border-radius: 12px;
+}
+
 
 #footer{
     justify-self:flex-end;
@@ -54,10 +129,27 @@ h1{
     display: flex;
     flex: 1 1 0;
     background-color: darkblue;
-    /* border: 1px solid rgb(64, 64, 160); */
+    border: 1px solid rgb(64, 64, 160);
 }
 
-.hover {
-    background-color: rgb(189, 43, 226);;
+button,#colorPicker {
+  transition: transform 0.3s ease-in-out;
 }
 
+button:hover,#colorPicker:hover {
+  transform: scale(1.15);
+}
+
+
+
+#colorPicker {
+  -webkit-appearance: none;
+  width: 80px;
+  height: 80px;
+
+}
+
+.active {
+    background-color: rgb(69, 69, 69);
+    transform: scale(1.15);
+}

@@ -12,11 +12,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Monoton&family=Rubik+Mono+One&family=Rubik+Moonrocks&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div><h1>ETCH-A-SKETCH</h1></div>
-    <button class="scale"> Scale </button>    
-    <div id="container"></div>
-    <div id="footer"></div>
-
+    <div id="pageContent">
+        <div><h1>ETCH-A-SKETCH</h1></div>  
+        <div id="main">
+            <div id="container"></div>
+            <div class="settings">
+                <input id="colorPicker" type="color" value="#FF51E4" />
+                <button class="scale"> Scale </button>  
+                <button class="colorBtn active">Color Mode</button>
+                <button class="rainbowBtn">Rainbow Mode</button>
+                <button class="eraserBtn">Eraser</button>
+                <button class="clearBtn">Clear</button>
+        </div>
+        </div>
+    </div>
+    <div id="footer">Copyright © 2022 marcosantinia12</div>
     <script type="text/javascript" src="script.js"></script>
 </body>
 </html>
